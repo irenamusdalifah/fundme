@@ -7,7 +7,7 @@ use yii\base\Model;
 /**
  * Login form
  */
-class LoginForm extends Model
+class LoginFormInvestor extends Model
 {
     public $username;
     public $password;
