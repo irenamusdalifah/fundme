@@ -11,7 +11,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use common\models\LoginFormPengajuDana;
+use common\models\LoginForm;
 
 /**
  * Site controller
@@ -72,7 +72,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+       if (!Yii::$app->user->isGuest) {
+            if (Yii::$app->user->identity->level == 2) {
+                $this->layout = 'mainPengajuDana';
+                    return $this->render('indexPengajuDana');
+            }else {
+                $this->layout = 'mainInvestor';
+                    return $this->render('indexInvestor');
+            }
+        }else {
+            $this->layout = "main";
+            return $this->render('index');
+        }
     }
 
     /**
@@ -86,12 +97,10 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginFormPengajuDana();
+        $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(['index']);
         } else {
-            $model->password = '';
-
             return $this->render('login', [
                 'model' => $model,
             ]);

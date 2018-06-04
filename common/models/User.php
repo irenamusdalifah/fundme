@@ -84,14 +84,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by username
+     * Finds user by level
      *
-     * @param string $username
+     * @param string $level
      * @return static|null
      */
-    public static function findByUserlevel($userlevel)
+    public static function findByLevel($level)
     {
-        return static::findOne(['userlevel' => $userlevel, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['level' => $level, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
