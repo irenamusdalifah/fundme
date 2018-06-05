@@ -6,34 +6,45 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\dependencies;
+if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
+  ramosisw\CImaterial\web\MaterialAsset::register($this);
+}
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+
+  <div class="container">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
-
     <div class="row">
-        <div class="col-md-4 ml-auto mr-auto">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+      <div class="col-md-4">
+        
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header text-center" data-background-color="purple">
+            <h4>Login</h4>
+          </div>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+          <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+          <div class="card-content">
+            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+            <?= Html::submitButton('Login', ['class' => 'btn btn-primary center', 'name' => 'login-button']) ?>
+          </div>
 
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
-                </div>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+          <?php ActiveForm::end(); ?>
         </div>
+      </div>
+      <div class="col-md-4">
+        
+      </div>
     </div>
-</div>
+
+    
+  </div>
