@@ -6,6 +6,10 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\dependencies;
+if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
+    ramosisw\CImaterial\web\MaterialAsset::register($this);
+}
 
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;

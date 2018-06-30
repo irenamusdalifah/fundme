@@ -11,6 +11,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Role;
 use common\models\LoginForm;
 
 /**
@@ -166,6 +167,7 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+        
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -174,7 +176,7 @@ class SiteController extends Controller
             }
         }
 
-        return $this->render('signup', [
+        return $this->render('register', [
             'model' => $model,
         ]);
     }
