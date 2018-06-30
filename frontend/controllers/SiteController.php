@@ -75,11 +75,11 @@ class SiteController extends Controller
     {
        if (!Yii::$app->user->isGuest) {
             if (Yii::$app->user->identity->level == 2) {
-                $this->layout = 'mainPengajuDana';
-                    return $this->render('indexPengajuDana');
+                $this->layout = 'pengajuDana/mainPengajuDana';
+                    return $this->render('pengajuDana/indexPengajuDana');
             }else {
-                $this->layout = 'mainInvestor';
-                    return $this->render('indexInvestor');
+                $this->layout = 'investor/mainInvestor';
+                    return $this->render('investor/indexInvestor');
             }
         }else {
             $this->layout = "main";

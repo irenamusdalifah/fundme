@@ -26,7 +26,11 @@ class Campaign extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
+
      */
+
+    public $file;
+
     public static function tableName()
     {
         return 'campaign';
@@ -38,7 +42,8 @@ class Campaign extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cmpg_judul', 'cmpg_deskripsi', 'cmpg_cerita', 'cmpg_poster', 'cmpg_namaposter', 'cmpg_targetdana', 'cmpg_durasihari', 'cmpg_totaldana', 'cmpg_laba_inv', 'cmpg_laba_pd', 'cmpg_kota', 'kategori_id', 'cmpg_resiko'], 'required'],
+            [['cmpg_judul', 'cmpg_deskripsi', 'cmpg_cerita', 'cmpg_namaposter', 'cmpg_targetdana', 'cmpg_durasihari', 'cmpg_totaldana', 'cmpg_laba_inv', 'cmpg_laba_pd', 'cmpg_kota', 'kategori_id', 'cmpg_resiko'], 'required'],
+            [['cmpg_poster'], 'file'],
             [['cmpg_cerita', 'cmpg_poster', 'cmpg_resiko'], 'string'],
             [['cmpg_targetdana', 'cmpg_totaldana'], 'number'],
             [['cmpg_durasihari', 'cmpg_laba_inv', 'cmpg_laba_pd', 'kategori_id'], 'integer'],

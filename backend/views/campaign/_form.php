@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cmpg_cerita')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'cmpg_poster')->textInput() ?>
+    <?= $form->field($model, 'cmpg_poster')->fileInput() ?>
 
     <?= $form->field($model, 'cmpg_namaposter')->textInput(['maxlength' => true]) ?>
 

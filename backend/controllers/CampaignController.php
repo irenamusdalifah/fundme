@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
 use Yii;
 use app\models\Campaign;
@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Campaign;
 
 /**
  * CampaignController implements the CRUD actions for Campaign model.
@@ -66,7 +67,15 @@ class CampaignController extends Controller
     {
         $model = new Campaign();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (Yii::$app->request->isPost) {
+            $model->file = 'file';
+
+            if ($model->file && $model->validate()) {                
+                $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
+            }
+        }
+
+        if ($model->save()) {
             return $this->redirect(['view', 'id' => $model->cmpg_id]);
         }
 
