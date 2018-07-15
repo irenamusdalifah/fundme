@@ -82,7 +82,7 @@ class SiteController extends Controller
                     return $this->render('investor/indexInvestor');
             }
         }else {
-            $this->layout = "main";
+            $this->layout = 'main';
             return $this->render('index');
         }
     }

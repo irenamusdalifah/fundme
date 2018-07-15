@@ -30,6 +30,9 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
 
 <div class="wrap">
     <?php
+
+    $usrd = Yii::$app->user->id;
+    
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -41,11 +44,12 @@ if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Buat Campaign', 'url' => ['/campaign/index']],
+        ['label' => 'Profil', 'url' => ['/pengaju-dana/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Pengaju Dana', 'url' => ['/site/login-pengaju-dana']];
-        $menuItems[] = ['label' => 'Investor', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
