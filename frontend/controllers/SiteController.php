@@ -73,17 +73,40 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $query = (new \yii\db\Query())
+                ->select('*')
+                ->from('image_carousel');
+
+        $command = $query->createCommand(); 
+        $data = $command->queryAll();
+
+        $query2 = (new \yii\db\Query())
+                ->select('*')
+                ->from('campaign');
+
+        $command2 = $query2->createCommand(); 
+        $data2 = $command2->queryAll();
+        
        if (!Yii::$app->user->isGuest) {
             if (Yii::$app->user->identity->level == 2) {
                 $this->layout = 'pengajuDana/mainPengajuDana';
-                    return $this->render('pengajuDana/indexPengajuDana');
+                    return $this->render('pengajuDana/indexPengajuDana', [
+            'datas' => $data,
+            'data2s' => $data2,
+        ]);
             }else {
                 $this->layout = 'investor/mainInvestor';
-                    return $this->render('investor/indexInvestor');
+                    return $this->render('investor/indexInvestor', [
+            'datas' => $data,
+            'data2s' => $data2,
+        ]);
             }
         }else {
-            $this->layout = 'main';
-            return $this->render('index');
+            $this->layout = 'main2';
+            return $this->render('index2', [
+            'datas' => $data,
+            'data2s' => $data2,
+        ]);
         }
     }
 
@@ -97,12 +120,12 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
+        $this->layout = "main2";
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('login', [
+            return $this->render('login2', [
                 'model' => $model,
             ]);
         }
@@ -167,7 +190,7 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        
+        $this->layout = "main2";
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -175,8 +198,8 @@ class SiteController extends Controller
                 }
             }
         }
-
-        return $this->render('register', [
+        
+        return $this->render('signup2', [
             'model' => $model,
         ]);
     }

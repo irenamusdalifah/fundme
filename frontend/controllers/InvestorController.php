@@ -36,6 +36,7 @@ class InvestorController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = "investor/mainInvestor";
         $searchModel = new InvestorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -100,6 +101,7 @@ class InvestorController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = "investor/mainInvestor";
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -113,7 +115,7 @@ class InvestorController extends Controller
     public function actionCreate()
     {
         $model = new Investor();
-
+        $this->layout = "investor/mainInvestor";
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->inv_id]);
         }

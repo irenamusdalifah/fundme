@@ -5,7 +5,8 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Investor */
-
+use frontend\assets\PKAsset;
+PKAsset::register($this);
 $this->title = $model->inv_id;
 $this->params['breadcrumbs'][] = ['label' => 'Investors', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

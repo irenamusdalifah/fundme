@@ -46,6 +46,7 @@ class Investor extends \yii\db\ActiveRecord
             [['inv_foto', 'inv_foto_kartu'], 'string', 'max' => 200],
             [['inv_alamat'], 'string', 'max' => 150],
             [['inv_kota'], 'string', 'max' => 50],
+            [['inv_saldo'], 'number'],
         ];
     }
 
@@ -67,6 +68,7 @@ class Investor extends \yii\db\ActiveRecord
             'inv_kota' => 'Inv Kota',
             'inv_telepon' => 'Inv Telepon',
             'user_id' => 'User ID',
+            'inv_saldo' => 'Saldo User',
         ];
     }
 }

@@ -39,7 +39,7 @@ class CampaignController extends Controller
     public function actionIndex()
     {
         $user_id = Yii::$app->user->identity->id;
-
+        $this->layout = "pengajudana/mainPengajuDana";
         $dataProvider = new ActiveDataProvider(['query' => Campaign::find()->andFilterWhere(['user_id' => $user_id])]);
 
         return $this->render('index', [
@@ -55,6 +55,7 @@ class CampaignController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = "pengajudana/mainPengajuDana";
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -68,7 +69,7 @@ class CampaignController extends Controller
     public function actionCreate()
     {
         $model = new Campaign();
-
+        $this->layout = "pengajudana/mainPengajuDana";
         $req = Yii::$app->request->post();
         $user_id = Yii::$app->user->identity->id;
 
@@ -93,7 +94,7 @@ class CampaignController extends Controller
             $image->saveAs($model->cmpg_namaposter);
             $model->save();
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->cmpg_id]);
+                return $this->redirect(['penarikan-investasi/create', 'id' => $model->cmpg_id]);
             }
         }
 
@@ -116,7 +117,7 @@ class CampaignController extends Controller
         // $gambar = Yii::$app->request->baseUrl.'/image_campaign/010.png';
         // var_dump($gambar);
         // die();
-        
+        $this->layout = "pengajudana/mainPengajuDana";
         $req = Yii::$app->request->post();
         $user_id = Yii::$app->user->identity->id;
 
@@ -166,6 +167,68 @@ class CampaignController extends Controller
 
         return $this->redirect(['index']);
     }
+
+    public function actionLaunch($id)
+    {
+        //$this->findModel($id)->delete();
+
+        $cmpg_id = $id;
+        $modelupdate = Campaign::findOne($cmpg_id);
+
+        //$uangtmp = $model->tc_dana;
+        $dimulai = date('Y-m-d H:i:s');
+        $timestampdimulai = strtotime($dimulai);
+        // var_dump($dimulai);
+        // die();
+
+        $akhir = $modelupdate->cmpg_durasihari;
+        // var_dump($akhir);
+        // die();
+        $stop_date = date('Y-m-d H:i:s', strtotime($dimulai . ' + '.$akhir.' day'));
+        // $timestampakhir = strtotime('+' . $akhir . ' days');
+        // $total1 = (int)($timestampakhir + $timestampdimulai);
+        // $total = date('Y-m-d H:i:s',$total1);
+        // var_dump($stop_date);
+        // die();
+        
+        $modelupdate->tgl_dimulai=$dimulai;
+        $modelupdate->tgl_akhir=$stop_date;
+        $modelupdate->cmpg_status=3;
+        $modelupdate->update();
+
+        return $this->redirect(['index']);
+    }
+
+    // public function actionRefresh($id)
+    // {
+    //     //$this->findModel($id)->delete();
+
+    //     $cmpg_id = $id;
+    //     $modelupdate = Campaign::findOne($cmpg_id);
+
+    //     //$uangtmp = $model->tc_dana;
+    //     $dimulai = date('Y-m-d H:i:s');
+    //     $timestampdimulai = strtotime($dimulai);
+    //     // var_dump($dimulai);
+    //     // die();
+
+    //     $akhir = $modelupdate->cmpg_durasihari;
+    //     // var_dump($akhir);
+    //     // die();
+    //     $stop_date = date('Y-m-d H:i:s', strtotime($dimulai . ' + '.$akhir.' day'));
+    //     // $timestampakhir = strtotime('+' . $akhir . ' days');
+    //     // $total1 = (int)($timestampakhir + $timestampdimulai);
+    //     // $total = date('Y-m-d H:i:s',$total1);
+    //     // var_dump($stop_date);
+    //     // die();
+        
+    //     $modelupdate->tgl_dimulai=$dimulai;
+    //     $modelupdate->tgl_akhir=$stop_date;
+    //     $modelupdate->cmpg_status=3;
+    //     $modelupdate->update();
+
+    //     return $this->redirect(['index']);
+    // }
 
     /**
      * Finds the Campaign model based on its primary key value.

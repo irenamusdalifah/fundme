@@ -6,7 +6,8 @@ use frontend\models\Bulan;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\FileInput;
 use kartik\widgets\DatePicker;
-
+use frontend\assets\PKAsset;
+PKAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Laporan */
 /* @var $form yii\widgets\ActiveForm */

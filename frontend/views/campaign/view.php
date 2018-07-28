@@ -5,7 +5,8 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
-
+use frontend\assets\PKAsset;
+PKAsset::register($this);
 $this->title = $model->cmpg_id;
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -24,7 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?= Html::a('Upload RAP', ['fitur-rap/create', 'id' => $model->cmpg_id], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Upload Laporan ', ['laporan/index', 'id' => $model->cmpg_id], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('Upload Laporan', ['laporan/index', 'id' => $model->cmpg_id], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('Lihat Komentar', ['komentar/index', 'id' => $model->cmpg_id], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('Launch!', ['launch', 'id' => $model->cmpg_id], ['class' => 'btn btn-danger']) ?>
+        <?= Html::a('Refresh!', ['refresh', 'id' => $model->cmpg_id], ['class' => 'btn btn-danger']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -36,7 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'cmpg_cerita:ntext',
             'cmpg_poster',
             'cmpg_namaposter',
-            'cmpg_targetdana',
+            [
+                'attribute'=>'cmpg_targetdana', 
+                'format' => ['decimal',0,'.']
+            ],
             'cmpg_durasihari',
             'cmpg_totaldana',
             'cmpg_laba_inv',

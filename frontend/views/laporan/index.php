@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\LaporanSearch */

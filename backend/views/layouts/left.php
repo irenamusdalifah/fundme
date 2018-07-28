@@ -32,6 +32,8 @@
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                    ['label' => 'Image Carousel', 'icon' => 'file-code-o', 'url' => ['/image-carousel/index'],],
+                    ['label' => 'Campaign', 'icon' => 'file-code-o', 'url' => ['/campaign'],],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
@@ -40,6 +42,7 @@
                         'url' => '#',
                         'items' => [
                             ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
+                            ['label' => 'Image Carousel', 'icon' => 'file-code-o', 'url' => ['/image-carousel'],],
                             ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
                             [
                                 'label' => 'Level One',

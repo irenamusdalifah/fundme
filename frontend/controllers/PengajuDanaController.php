@@ -45,7 +45,7 @@ class PengajuDanaController extends Controller
         ]);*/
 
         $user_id = Yii::$app->user->identity->id;
-
+        $this->layout = "pengajudana/mainPengajuDana";
         $query = (new \yii\db\Query())
                 ->select('pd_id')
                 ->from('pengaju_dana')
@@ -99,7 +99,8 @@ class PengajuDanaController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
-    {
+    { 
+        $this->layout = "pengajudana/mainPengajuDana";
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -113,7 +114,7 @@ class PengajuDanaController extends Controller
     public function actionCreate()
     {
         $model = new PengajuDana();
-       
+        $this->layout = "pengajudana/mainPengajuDana";
 
         $req = Yii::$app->request->post();
         $user_id = Yii::$app->user->identity->id;
@@ -157,6 +158,7 @@ class PengajuDanaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $this->layout = "pengajudana/mainPengajuDana";
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->pd_id]);

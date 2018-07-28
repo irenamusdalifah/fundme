@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-
+use frontend\assets\PKAsset;
+PKAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Laporan */

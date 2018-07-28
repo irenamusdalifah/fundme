@@ -7,7 +7,8 @@ use kartik\widgets\DatePicker;
 use yii\helpers\ArrayHelper;
 use frontend\models\Gender;
 use yii\helpers\BaseUrl;
-
+use frontend\assets\PKAsset;
+PKAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Investor */
 /* @var $form yii\widgets\ActiveForm */

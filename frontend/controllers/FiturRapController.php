@@ -55,6 +55,7 @@ class FiturRapController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = "pengajudana/mainPengajuDana";
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -68,9 +69,8 @@ class FiturRapController extends Controller
     public function actionCreate($id)
     {
         $model = new fiturRap();
-
+        $this->layout = "pengajudana/mainPengajuDana";
         $req = Yii::$app->request->post();
-
         $query = (new \yii\db\Query())
         ->select('*')
         ->from('fitur_rap')
@@ -116,7 +116,7 @@ class FiturRapController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $this->layout = "pengajudana/mainPengajuDana";
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->rap_id]);
         }

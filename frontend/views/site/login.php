@@ -7,9 +7,10 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\dependencies;
-// if (class_exists('ramosisw\CImaterial\web\MaterialAsset')) {
-//   ramosisw\CImaterial\web\MaterialAsset::register($this);
-// }
+use frontend\assets\PKAsset;
+PKAsset::register($this);
+// use frontend\assets\MaterialAsset;
+// MaterialAsset::register($this);
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,15 +22,19 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <div class="card">
-        <div class="card-header text-center" data-background-color="purple">
-          <h4>Login</h4>
+      <div class="card" data-background-color="purple">
+        <div class="card-header text-center" >
+          <h4 class="title title-up">Login</h4>
         </div>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
+        
         <div class="card-content">
-          <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+          
+
+          <?= $form->field($model, 'username')->textInput(['autofocus' => true], ['class' => 'form-control']) ?>
+          
+          
           <?= $form->field($model, 'password')->passwordInput() ?>
           <?= $form->field($model, 'rememberMe')->checkbox() ?>
 

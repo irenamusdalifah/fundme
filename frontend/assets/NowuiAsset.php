@@ -1,16 +1,15 @@
 <?php
 
-namespace frontend\assets;
+namespace nowuikit\web;
 
-use yii\web\AssetBundle;
+use yii\web\AssetBundle as BaseMaterialAsset;
 
 /**
  * Main frontend application asset bundle.
  */
-class NowuiAsset extends AssetBundle
+class NowuiAsset extends BaseMaterialAsset
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@vendor/nowuikit/assets';
     public $css = [
         'nowuikit/css/now-ui-kit.css',
         'nowuikit/css/now-ui-kit.min.css',
@@ -28,6 +27,10 @@ class NowuiAsset extends AssetBundle
         'nowuikit/js/core/bootstrap-nowui.min.js',
         // 'materialkitassets/js/core/jquery.min.js',
         'nowuikit/js/core/popper.min.js',
+        'nowuikit/js/plugins/bootstrap-datepicker.js',
+        'nowuikit/js/plugins/bootstrap-switch.js',
+        'nowuikit/js/plugins/jquery.sharrre.js',
+        //'nowuikit/js/plugins/jquery.sharrre.js',
         //'nowuikit/js/plugins/moment.min.js',
         // 'materialkitassets/js/plugins/bootstrap-datetimepicker.js',
         

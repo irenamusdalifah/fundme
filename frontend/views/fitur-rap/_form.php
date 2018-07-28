@@ -4,7 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\FileInput;
 use kartik\widgets\DatePicker;
-
+use frontend\assets\PKAsset;
+PKAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\fiturRap */
